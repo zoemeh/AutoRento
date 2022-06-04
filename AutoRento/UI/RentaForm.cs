@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoRento.Data;
+using AutoRento.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,23 @@ namespace AutoRento.UI
 {
     public partial class RentaForm : Form
     {
+        Renta renta = new Renta();
+        VehiculoRepo vehiculoRepo = new VehiculoRepo();
+        ClienteRepo clienteRepo = new ClienteRepo();
+        EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+        RentaRepo rentaRepo = new RentaRepo();
         public RentaForm()
         {
             InitializeComponent();
+        }
+
+        public void LoadData()
+        {
+            clienteCombo.DataSource = clienteRepo.View();
+            vehiculoCombo.DataSource = vehiculoRepo.View();
+            empleadoCombo.DataSource = empleadoRepo.View();
+            dataGridView1.DataSource = rentaRepo.View();
+            dataGridView1.ClearSelection();
         }
     }
 }

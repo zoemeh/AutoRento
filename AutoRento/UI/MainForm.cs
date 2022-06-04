@@ -21,6 +21,7 @@ namespace AutoRento.UI
         public TiposCombustibleForm tiposCombustibleForm;
         public TiposVehiculoForm tiposVehiculoForm;
         public VehiculosForm vehiculosForm;
+        public InspeccionForm inspeccionForm;
 
         public MainForm()
         {
@@ -141,7 +142,34 @@ namespace AutoRento.UI
 
         private void button8_Click(object sender, EventArgs e)
         {
+            if (rentaForm == null || rentaForm.IsDisposed)
+            {
+                rentaForm = new RentaForm();
+                rentaForm.LoadData();
+                rentaForm.Show();
+            }
+            else
+            {
+                rentaForm.LoadData();
+                rentaForm.Show();
+                rentaForm.Focus();
+            }
+        }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (inspeccionForm == null || inspeccionForm.IsDisposed)
+            {
+                inspeccionForm = new InspeccionForm();
+                inspeccionForm.LoadData();
+                inspeccionForm.Show();
+            }
+            else
+            {
+                inspeccionForm.LoadData();
+                inspeccionForm.Show();
+                inspeccionForm.Focus();
+            }
         }
     }
 }

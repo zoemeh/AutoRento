@@ -18,6 +18,8 @@ namespace AutoRento.Data
         public DbSet<TipoCombustible> TiposCombustible { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Renta> Rentas { get; set; }
+        public DbSet<Inspeccion> Inspecciones { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             optionBuilder.UseSqlServer(@"Data Source=PUENTESANTO;Initial Catalog=TipoCombustibleDB;Integrated Security=True");

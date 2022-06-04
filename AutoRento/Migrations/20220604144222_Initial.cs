@@ -102,6 +102,35 @@ namespace AutoRento.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rentas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmpleadoId = table.Column<int>(type: "int", nullable: true),
+                    ClienteId = table.Column<int>(type: "int", nullable: true),
+                    FechaRenta = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaDevolucion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MontoDia = table.Column<double>(type: "float", nullable: false),
+                    Comentario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rentas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rentas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Rentas_Empleados_EmpleadoId",
+                        column: x => x.EmpleadoId,
+                        principalTable: "Empleados",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Modelos",
                 columns: table => new
                 {
@@ -164,10 +193,77 @@ namespace AutoRento.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Inspecciones",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VehiculoId = table.Column<int>(type: "int", nullable: true),
+                    ClienteId = table.Column<int>(type: "int", nullable: true),
+                    Combustible = table.Column<double>(type: "float", nullable: false),
+                    tieneRalladuras = table.Column<bool>(type: "bit", nullable: false),
+                    TieneGomaRespuesta = table.Column<bool>(type: "bit", nullable: false),
+                    TieneGato = table.Column<bool>(type: "bit", nullable: false),
+                    TieneRoturaCristal = table.Column<bool>(type: "bit", nullable: false),
+                    CheckGomaIzqD = table.Column<bool>(type: "bit", nullable: false),
+                    CheckGomaIzqT = table.Column<bool>(type: "bit", nullable: false),
+                    CheckGomaDerD = table.Column<bool>(type: "bit", nullable: false),
+                    CheckGomaDerT = table.Column<bool>(type: "bit", nullable: false),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmpleadoId = table.Column<int>(type: "int", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inspecciones", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Inspecciones_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Inspecciones_Empleados_EmpleadoId",
+                        column: x => x.EmpleadoId,
+                        principalTable: "Empleados",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Inspecciones_Vehiculos_VehiculoId",
+                        column: x => x.VehiculoId,
+                        principalTable: "Vehiculos",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inspecciones_ClienteId",
+                table: "Inspecciones",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inspecciones_EmpleadoId",
+                table: "Inspecciones",
+                column: "EmpleadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inspecciones_VehiculoId",
+                table: "Inspecciones",
+                column: "VehiculoId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Modelos_MarcaId",
                 table: "Modelos",
                 column: "MarcaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentas_ClienteId",
+                table: "Rentas",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentas_EmpleadoId",
+                table: "Rentas",
+                column: "EmpleadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_MarcaId",
@@ -193,16 +289,22 @@ namespace AutoRento.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clientes");
+                name: "Inspecciones");
 
             migrationBuilder.DropTable(
-                name: "Empleados");
+                name: "Rentas");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Vehiculos");
+
+            migrationBuilder.DropTable(
+                name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Empleados");
 
             migrationBuilder.DropTable(
                 name: "Modelos");

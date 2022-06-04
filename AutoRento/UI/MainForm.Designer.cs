@@ -42,6 +42,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -184,6 +185,7 @@
             this.tableLayoutPanel4.Controls.Add(this.button8, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.button9, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.button10, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.button6, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(403, 228);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -224,6 +226,17 @@
             this.button10.Text = "Buscar";
             this.button10.UseVisualStyleBackColor = true;
             // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.Location = new System.Drawing.Point(3, 112);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(191, 104);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "Inspecciones";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -257,5 +270,6 @@
         private Button button8;
         private Button button9;
         private Button button10;
+        private Button button6;
     }
 }

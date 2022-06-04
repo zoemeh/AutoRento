@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoRento.Migrations
 {
     [DbContext(typeof(AutoRentoContext))]
-    [Migration("20220604131629_Initial")]
+    [Migration("20220604144222_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,67 @@ namespace AutoRento.Migrations
                     b.ToTable("Empleados");
                 });
 
+            modelBuilder.Entity("AutoRento.Models.Inspeccion", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<bool>("CheckGomaDerD")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaDerT")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaIzqD")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaIzqT")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Combustible")
+                        .HasColumnType("float");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("TieneGato")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TieneGomaRespuesta")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TieneRoturaCristal")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("VehiculoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("tieneRalladuras")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpleadoId");
+
+                    b.HasIndex("VehiculoId");
+
+                    b.ToTable("Inspecciones");
+                });
+
             modelBuilder.Entity("AutoRento.Models.Marca", b =>
                 {
                     b.Property<int?>("Id")
@@ -137,6 +198,45 @@ namespace AutoRento.Migrations
                     b.HasIndex("MarcaId");
 
                     b.ToTable("Modelos");
+                });
+
+            modelBuilder.Entity("AutoRento.Models.Renta", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comentario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EmpleadoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechaDevolucion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaRenta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("MontoDia")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpleadoId");
+
+                    b.ToTable("Rentas");
                 });
 
             modelBuilder.Entity("AutoRento.Models.TipoCombustible", b =>
@@ -252,6 +352,29 @@ namespace AutoRento.Migrations
                     b.ToTable("Vehiculos");
                 });
 
+            modelBuilder.Entity("AutoRento.Models.Inspeccion", b =>
+                {
+                    b.HasOne("AutoRento.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("AutoRento.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AutoRento.Models.Vehiculo", "Vehiculo")
+                        .WithMany()
+                        .HasForeignKey("VehiculoId");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empleado");
+
+                    b.Navigation("Vehiculo");
+                });
+
             modelBuilder.Entity("AutoRento.Models.Modelo", b =>
                 {
                     b.HasOne("AutoRento.Models.Marca", "Marca")
@@ -261,6 +384,21 @@ namespace AutoRento.Migrations
                         .IsRequired();
 
                     b.Navigation("Marca");
+                });
+
+            modelBuilder.Entity("AutoRento.Models.Renta", b =>
+                {
+                    b.HasOne("AutoRento.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("AutoRento.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empleado");
                 });
 
             modelBuilder.Entity("AutoRento.Models.Vehiculo", b =>

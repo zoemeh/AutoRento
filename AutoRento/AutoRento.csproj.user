@@ -16,6 +16,9 @@
     <Compile Update="UI\InspeccionForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\RentaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -26,9 +29,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\ModelosForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\RentaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UI\ReportesForm.cs">
