@@ -19,6 +19,7 @@ namespace AutoRento.UI
         EmpleadoRepo empleadoRepo = new EmpleadoRepo();
         InspeccionRepo inspeccionRepo = new InspeccionRepo();
         readonly Inspeccion inspeccion = new Inspeccion();
+        public List<string> errores = new List<string>();
         public InspeccionForm()
         {
             InitializeComponent();
@@ -134,6 +135,29 @@ namespace AutoRento.UI
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
 
+            }
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            using AutoRentoContext db = new AutoRentoContext();
+            if (fechaCheck.Value > DateTime.Today)
+            {
+                errores.Add("Fecha no puede estar en el futuro");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

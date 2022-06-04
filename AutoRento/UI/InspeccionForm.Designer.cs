@@ -207,6 +207,7 @@
             // 
             // vehiculoCombo
             // 
+            this.vehiculoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.vehiculoCombo.FormattingEnabled = true;
             this.vehiculoCombo.Location = new System.Drawing.Point(3, 18);
             this.vehiculoCombo.Name = "vehiculoCombo";
@@ -224,6 +225,7 @@
             // 
             // clienteCombo
             // 
+            this.clienteCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.clienteCombo.FormattingEnabled = true;
             this.clienteCombo.Location = new System.Drawing.Point(3, 62);
             this.clienteCombo.Name = "clienteCombo";
@@ -241,6 +243,7 @@
             // 
             // empleadoCombo
             // 
+            this.empleadoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.empleadoCombo.FormattingEnabled = true;
             this.empleadoCombo.Location = new System.Drawing.Point(3, 106);
             this.empleadoCombo.Name = "empleadoCombo";
