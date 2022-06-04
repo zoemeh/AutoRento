@@ -48,8 +48,9 @@ namespace AutoRento.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoPersona")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

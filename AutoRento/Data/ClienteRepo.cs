@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoRento.Data
 {
-    internal class ClienteRepo : IRecordRepo<Cliente>
+    public class ClienteRepo : IRecordRepo<Cliente>
     {
         public Cliente Create(Cliente t)
         {

@@ -19,7 +19,7 @@ namespace AutoRento.Migrations
                     Cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TarjetaCredito = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LimiteCredito = table.Column<double>(type: "float", nullable: false),
-                    TipoPersona = table.Column<int>(type: "int", nullable: false),
+                    TipoPersona = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

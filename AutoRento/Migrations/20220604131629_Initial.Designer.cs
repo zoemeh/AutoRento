@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoRento.Migrations
 {
     [DbContext(typeof(AutoRentoContext))]
-    [Migration("20220604060604_Initial")]
+    [Migration("20220604131629_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,8 +50,9 @@ namespace AutoRento.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoPersona")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

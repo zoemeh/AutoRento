@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace AutoRento.Models
 {
-    public enum TipoPersona
-    {
-        Fisica,
-        Juridica
-    }
     public class Cliente
     {
         public int? Id { get; set; }
@@ -18,7 +13,7 @@ namespace AutoRento.Models
         public string Cedula { get; set; }
         public string TarjetaCredito { get; set; }
         public double LimiteCredito { get; set; }
-        public TipoPersona TipoPersona { get; set; }
+        public string TipoPersona { get; set; }
         public bool Estado { get; set; }
         public override string ToString()
         {
