@@ -31,7 +31,7 @@ namespace AutoRento.UI
         public Cliente FillCliente()
         {
             cliente.Nombre = nombreText.Text.Trim();
-            cliente.Cedula = cedulaText.Text.Trim();
+            cliente.Cedula = cedulaText.Text.Replace("-","").Trim();
             cliente.TarjetaCredito = tarjetaText.Text.Trim();
             cliente.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
             cliente.TipoPersona = tipoPersonaCombo.Text;
@@ -99,7 +99,7 @@ namespace AutoRento.UI
             }
             if (tipoPersonaCombo.Text == "Fisica")
             {
-                if (!validaCedula(cedulaText.Text.Trim()))
+                if (!validaCedula(cedulaText.Text.Replace("-","").Trim()))
                 {
                     errores.Add("Cedula no valida");
                 }
@@ -113,11 +113,11 @@ namespace AutoRento.UI
             using AutoRentoContext db = new AutoRentoContext();
             if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
             {
-                errores.Add("Ya existe un empleado con este nombre");
+                errores.Add("Ya existe un cliente con este nombre");
             }
-            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Trim()).Any())
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Replace("-","").Trim()).Any())
             {
-                errores.Add("Ya existe un empleado con esta cedula.");
+                errores.Add("Ya existe un cliente con esta cedula.");
             }
             if (errores.Count > 0)
             {
