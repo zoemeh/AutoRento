@@ -24,11 +24,11 @@ namespace AutoRento.Migrations
 
             modelBuilder.Entity("AutoRento.Models.Cliente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Cedula")
                         .IsRequired()
@@ -58,11 +58,11 @@ namespace AutoRento.Migrations
 
             modelBuilder.Entity("AutoRento.Models.Empleado", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Cedula")
                         .IsRequired()
@@ -81,8 +81,9 @@ namespace AutoRento.Migrations
                     b.Property<double>("PorcienteComision")
                         .HasColumnType("float");
 
-                    b.Property<int>("TandaLabor")
-                        .HasColumnType("int");
+                    b.Property<string>("TandaLabor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -211,10 +212,10 @@ namespace AutoRento.Migrations
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MarcaId")
+                    b.Property<int?>("MarcaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeloId")
+                    b.Property<int?>("ModeloId")
                         .HasColumnType("int");
 
                     b.Property<string>("NumeroChasis")
@@ -229,13 +230,21 @@ namespace AutoRento.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoCombustibleId")
+                    b.Property<int?>("TipoCombustibleId")
                         .HasColumnType("int");
 
                     b.Property<int>("TipoVehiculoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MarcaId");
+
+                    b.HasIndex("ModeloId");
+
+                    b.HasIndex("TipoCombustibleId");
+
+                    b.HasIndex("TipoVehiculoId");
 
                     b.ToTable("Vehiculos");
                 });
@@ -249,6 +258,35 @@ namespace AutoRento.Migrations
                         .IsRequired();
 
                     b.Navigation("Marca");
+                });
+
+            modelBuilder.Entity("AutoRento.Models.Vehiculo", b =>
+                {
+                    b.HasOne("AutoRento.Models.Marca", "Marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaId");
+
+                    b.HasOne("AutoRento.Models.Modelo", "Modelo")
+                        .WithMany()
+                        .HasForeignKey("ModeloId");
+
+                    b.HasOne("AutoRento.Models.TipoCombustible", "TipoCombustible")
+                        .WithMany()
+                        .HasForeignKey("TipoCombustibleId");
+
+                    b.HasOne("AutoRento.Models.TipoVehiculo", "TipoVehiculo")
+                        .WithMany()
+                        .HasForeignKey("TipoVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Marca");
+
+                    b.Navigation("Modelo");
+
+                    b.Navigation("TipoCombustible");
+
+                    b.Navigation("TipoVehiculo");
                 });
 #pragma warning restore 612, 618
         }

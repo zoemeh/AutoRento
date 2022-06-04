@@ -35,7 +35,7 @@ namespace AutoRento.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TandaLabor = table.Column<int>(type: "int", nullable: false),
+                    TandaLabor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PorcienteComision = table.Column<double>(type: "float", nullable: false),
                     FechaIngreso = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false)
@@ -102,27 +102,6 @@ namespace AutoRento.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vehiculos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumeroChasis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumeroMotor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NumeroPlaca = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoVehiculoId = table.Column<int>(type: "int", nullable: false),
-                    MarcaId = table.Column<int>(type: "int", nullable: false),
-                    ModeloId = table.Column<int>(type: "int", nullable: false),
-                    TipoCombustibleId = table.Column<int>(type: "int", nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vehiculos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Modelos",
                 columns: table => new
                 {
@@ -143,10 +122,72 @@ namespace AutoRento.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Vehiculos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeroChasis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeroMotor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeroPlaca = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TipoVehiculoId = table.Column<int>(type: "int", nullable: false),
+                    MarcaId = table.Column<int>(type: "int", nullable: true),
+                    ModeloId = table.Column<int>(type: "int", nullable: true),
+                    TipoCombustibleId = table.Column<int>(type: "int", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehiculos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vehiculos_Marcas_MarcaId",
+                        column: x => x.MarcaId,
+                        principalTable: "Marcas",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Vehiculos_Modelos_ModeloId",
+                        column: x => x.ModeloId,
+                        principalTable: "Modelos",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Vehiculos_TiposCombustible_TipoCombustibleId",
+                        column: x => x.TipoCombustibleId,
+                        principalTable: "TiposCombustible",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Vehiculos_TiposVehiculo_TipoVehiculoId",
+                        column: x => x.TipoVehiculoId,
+                        principalTable: "TiposVehiculo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Modelos_MarcaId",
                 table: "Modelos",
                 column: "MarcaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_MarcaId",
+                table: "Vehiculos",
+                column: "MarcaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_ModeloId",
+                table: "Vehiculos",
+                column: "ModeloId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_TipoCombustibleId",
+                table: "Vehiculos",
+                column: "TipoCombustibleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_TipoVehiculoId",
+                table: "Vehiculos",
+                column: "TipoVehiculoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -158,6 +199,12 @@ namespace AutoRento.Migrations
                 name: "Empleados");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
+                name: "Vehiculos");
+
+            migrationBuilder.DropTable(
                 name: "Modelos");
 
             migrationBuilder.DropTable(
@@ -165,12 +212,6 @@ namespace AutoRento.Migrations
 
             migrationBuilder.DropTable(
                 name: "TiposVehiculo");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
-
-            migrationBuilder.DropTable(
-                name: "Vehiculos");
 
             migrationBuilder.DropTable(
                 name: "Marcas");

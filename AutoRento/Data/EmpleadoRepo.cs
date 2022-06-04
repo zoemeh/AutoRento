@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoRento.Data
 {
-    internal class EmpleadoRepo : IRecordRepo<Empleado>
+    public class EmpleadoRepo : IRecordRepo<Empleado>
     {
         public Empleado Create(Empleado t)
         {
