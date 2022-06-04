@@ -16,6 +16,7 @@ namespace AutoRento.UI
     {
         readonly TipoVehiculo tiposVehiculo = new TipoVehiculo();
         readonly TipoVehiculoRepo tiposVehiculoRepo = new TipoVehiculoRepo();
+        List<string> errores = new List<string>();
         public TiposVehiculoForm()
         {
             InitializeComponent();
@@ -41,16 +42,23 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            tiposVehiculoRepo.Create(GetTipoVehiculo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                tiposVehiculoRepo.Create(GetTipoVehiculo());
+                LoadData();
+                Clear();
+            }
+
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            tiposVehiculoRepo.Update(GetTipoVehiculo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                tiposVehiculoRepo.Update(GetTipoVehiculo());
+                LoadData();
+                Clear();
+            }
         }
 
         private void otroBtn_Click(object sender, EventArgs e)
@@ -84,6 +92,34 @@ namespace AutoRento.UI
             tiposVehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
             descripcionText.Text = tiposVehiculo.Descripcion;
             estadoCheck.Checked = tiposVehiculo.Estado;
+        }
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("Descripción no puede estar en blanco");
+            }
+            using AutoRentoContext db = new AutoRentoContext();
+            if (db.TiposVehiculo.Where(x => x.Descripcion == descripcionText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un tipo de vehiculo con esa descripción");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

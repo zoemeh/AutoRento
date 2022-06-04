@@ -1,3 +1,4 @@
+using AutoRento.Data;
 using AutoRento.Models;
 using AutoRento.UI;
 
@@ -7,6 +8,7 @@ namespace AutoRento
     {
         readonly TipoCombustible tipoCombustible = new TipoCombustible();
         readonly TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
+        List<string> errores = new List<string>();
         public TiposCombustibleForm()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace AutoRento
             return tipoCombustible;
         }
 
-        private void  Clear()
+        private void Clear()
         {
             descripcionText.Text = "";
             estadoCheck.Checked = false;
@@ -39,16 +41,22 @@ namespace AutoRento
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            tipoCombustibleRepo.Create(GetTipoCombustible());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                tipoCombustibleRepo.Create(GetTipoCombustible());
+                LoadData();
+                Clear();
+            }
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            tipoCombustibleRepo.Update(GetTipoCombustible());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                tipoCombustibleRepo.Update(GetTipoCombustible());
+                LoadData();
+                Clear();
+            }
         }
 
         private void CombustiblesGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -79,7 +87,35 @@ namespace AutoRento
 
         private void CombustiblesGrid_SelectionChanged(object sender, EventArgs e)
         {
-            
+
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("Descripción no puede estar en blanco");
+            }
+            using AutoRentoContext db = new AutoRentoContext();
+            if (db.TiposCombustible.Where(x => x.Descripcion == descripcionText.Text).Any())
+            {
+                errores.Add("Ya existe un tipo de combustible con esa descripción");
+            }
+
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

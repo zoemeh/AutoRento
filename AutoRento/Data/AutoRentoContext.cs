@@ -22,7 +22,7 @@ namespace AutoRento.Data
         public DbSet<Inspeccion> Inspecciones { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"Data Source=PUENTESANTO;Initial Catalog=TipoCombustibleDB;Integrated Security=True");
+            optionBuilder.UseSqlServer(@"Data Source=SURFACE-EDUARDO;Initial Catalog=TipoCombustibleDB;Integrated Security=True");
         }
     }
 }

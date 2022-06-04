@@ -17,6 +17,7 @@ namespace AutoRento.UI
         readonly Modelo modelo = new Modelo();
         readonly ModeloRepo modeloRepo = new ModeloRepo();
         readonly MarcaRepo marcaRepo = new MarcaRepo();
+        List<string> errores = new List<string>();
         public ModelosForm()
         {
             InitializeComponent();
@@ -56,16 +57,24 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            modeloRepo.Create(GetModelo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                modeloRepo.Create(GetModelo());
+                LoadData();
+                Clear();
+            }
+            
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            modeloRepo.Update(GetModelo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                modeloRepo.Update(GetModelo());
+                LoadData();
+                Clear();
+            }
+            
         }
 
         private void otroBtn_Click(object sender, EventArgs e)
@@ -116,6 +125,38 @@ namespace AutoRento.UI
             }
             descripcionText.Text = modelo.Descripcion;
             estadoCheck.Checked = modelo.Estado;
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("Descripción no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(marcasCombo.Text))
+            {
+                errores.Add("Debe ser parte de una Marca.");
+            }
+            using AutoRentoContext db = new AutoRentoContext();
+            var marca = (Marca)marcasCombo.SelectedItem;
+            if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id).Any())
+            {
+                errores.Add("Ya existe un modelo con este nombre para esta marca.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ namespace AutoRento.UI
         public bool Editando;
         public Cliente cliente = new Cliente();
         public ClienteRepo clienteRepo = new ClienteRepo();
+        List<string> errores = new List<string>();
         public ClientesDetailForm()
         {
             InitializeComponent();
@@ -64,6 +65,51 @@ namespace AutoRento.UI
         private void cancelarBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(nombreText.Text))
+            {
+                errores.Add("Nombre no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(cedulaText.Text))
+            {
+                errores.Add("Cedula no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(tarjetaText.Text))
+            {
+                errores.Add("Tarjet de credito no puede estar en blanco");
+            }
+            if (limiteCreditoText.Value < 0)
+            {
+                errores.Add("Limite de credito no puede ser menor a 0");
+            }
+            // TODO: validar cedula
+            using AutoRentoContext db = new AutoRentoContext();
+            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con este nombre");
+            }
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con esta cedula.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

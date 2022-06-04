@@ -17,7 +17,7 @@ namespace AutoRento.UI
         public bool Editando;
         public Empleado empleado = new Empleado();
         public EmpleadoRepo empleadoRepo = new EmpleadoRepo();
-
+        List<string> errores = new List<string>();
         public EmpleadosDetailForm()
         {
             InitializeComponent();
@@ -42,15 +42,18 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            if (Editando)
+            if (Validar())
             {
-                empleadoRepo.Update(FillEmpleado());
+                if (Editando)
+                {
+                    empleadoRepo.Update(FillEmpleado());
+                }
+                else
+                {
+                    empleadoRepo.Create(FillEmpleado());
+                }
+                Close();
             }
-            else
-            {
-                empleadoRepo.Create(FillEmpleado());
-            }
-            Close();
         }
 
         internal void FillForm()
@@ -67,6 +70,47 @@ namespace AutoRento.UI
         private void cancelarBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(nombreText.Text))
+            {
+                errores.Add("Nombre no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(cedulaText.Text))
+            {
+                errores.Add("Cedula no puede estar en blanco");
+            }
+            // TODO: validar cedula
+            using AutoRentoContext db = new AutoRentoContext();
+            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con este nombre");
+            }
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con esta cedula.");
+            }
+            if (comisionText.Value < 0)
+            {
+                errores.Add("Comision no puede ser menor a 0");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
