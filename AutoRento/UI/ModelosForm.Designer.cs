@@ -52,8 +52,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 1);
@@ -73,7 +73,7 @@
             this.pictureBox1.Image = global::AutoRento.Properties.Resources._615hURQ4qsL__AC_SX425_;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(394, 219);
+            this.pictureBox1.Size = new System.Drawing.Size(234, 219);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -87,9 +87,9 @@
             this.flowLayoutPanel1.Controls.Add(this.estadoCheck);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(403, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(243, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(394, 219);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(554, 219);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label2
@@ -142,15 +142,16 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(403, 228);
+            this.dataGridView1.Location = new System.Drawing.Point(243, 228);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(394, 219);
+            this.dataGridView1.Size = new System.Drawing.Size(554, 219);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -169,7 +170,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(234, 219);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // guardarBtn
@@ -177,9 +178,9 @@
             this.guardarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guardarBtn.Location = new System.Drawing.Point(3, 3);
             this.guardarBtn.Name = "guardarBtn";
-            this.guardarBtn.Size = new System.Drawing.Size(388, 48);
+            this.guardarBtn.Size = new System.Drawing.Size(228, 48);
             this.guardarBtn.TabIndex = 0;
-            this.guardarBtn.Text = "Guardar";
+            this.guardarBtn.Text = "Crear";
             this.guardarBtn.UseVisualStyleBackColor = true;
             this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
@@ -188,18 +189,19 @@
             this.actualizarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actualizarBtn.Location = new System.Drawing.Point(3, 57);
             this.actualizarBtn.Name = "actualizarBtn";
-            this.actualizarBtn.Size = new System.Drawing.Size(388, 48);
+            this.actualizarBtn.Size = new System.Drawing.Size(228, 48);
             this.actualizarBtn.TabIndex = 1;
-            this.actualizarBtn.Text = "Actualizar";
+            this.actualizarBtn.Text = "Editar";
             this.actualizarBtn.UseVisualStyleBackColor = true;
             this.actualizarBtn.Click += new System.EventHandler(this.actualizarBtn_Click);
             // 
             // otroBtn
             // 
             this.otroBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otroBtn.Enabled = false;
             this.otroBtn.Location = new System.Drawing.Point(3, 111);
             this.otroBtn.Name = "otroBtn";
-            this.otroBtn.Size = new System.Drawing.Size(388, 48);
+            this.otroBtn.Size = new System.Drawing.Size(228, 48);
             this.otroBtn.TabIndex = 2;
             this.otroBtn.Text = "Otro";
             this.otroBtn.UseVisualStyleBackColor = true;
@@ -208,9 +210,10 @@
             // borrarBtn
             // 
             this.borrarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borrarBtn.Enabled = false;
             this.borrarBtn.Location = new System.Drawing.Point(3, 165);
             this.borrarBtn.Name = "borrarBtn";
-            this.borrarBtn.Size = new System.Drawing.Size(388, 51);
+            this.borrarBtn.Size = new System.Drawing.Size(228, 51);
             this.borrarBtn.TabIndex = 3;
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.UseVisualStyleBackColor = true;

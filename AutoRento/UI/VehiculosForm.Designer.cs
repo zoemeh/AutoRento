@@ -70,6 +70,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(794, 219);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -103,6 +104,7 @@
             // editarBtn
             // 
             this.editarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editarBtn.Enabled = false;
             this.editarBtn.Location = new System.Drawing.Point(400, 3);
             this.editarBtn.Name = "editarBtn";
             this.editarBtn.Size = new System.Drawing.Size(391, 103);
@@ -114,6 +116,7 @@
             // otroBtn
             // 
             this.otroBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otroBtn.Enabled = false;
             this.otroBtn.Location = new System.Drawing.Point(3, 112);
             this.otroBtn.Name = "otroBtn";
             this.otroBtn.Size = new System.Drawing.Size(391, 104);
@@ -124,6 +127,7 @@
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Enabled = false;
             this.button4.Location = new System.Drawing.Point(400, 112);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(391, 104);

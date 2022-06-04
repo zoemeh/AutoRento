@@ -77,6 +77,7 @@ namespace AutoRento
                 {
                     tipoCombustibleRepo.Delete(t);
                     LoadData();
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -88,6 +89,7 @@ namespace AutoRento
 
         private void CombustiblesGrid_SelectionChanged(object sender, EventArgs e)
         {
+            borrarBtn.Enabled = CombustiblesGrid.SelectedRows.Count > 0;
 
         }
         public bool Validar()

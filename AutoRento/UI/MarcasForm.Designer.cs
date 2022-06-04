@@ -50,8 +50,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
@@ -71,7 +71,7 @@
             this.pictureBox1.Image = global::AutoRento.Properties.Resources.Top_10_AUTOMOBILE_COMPANIES_IN_THE_WORLD;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(394, 219);
+            this.pictureBox1.Size = new System.Drawing.Size(234, 219);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -83,10 +83,11 @@
             this.flowLayoutPanel1.Controls.Add(this.estadoCheck);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(403, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(243, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(394, 219);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(554, 219);
             this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // label1
             // 
@@ -131,7 +132,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(234, 219);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // guardarBtn
@@ -139,9 +140,9 @@
             this.guardarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guardarBtn.Location = new System.Drawing.Point(3, 3);
             this.guardarBtn.Name = "guardarBtn";
-            this.guardarBtn.Size = new System.Drawing.Size(388, 48);
+            this.guardarBtn.Size = new System.Drawing.Size(228, 48);
             this.guardarBtn.TabIndex = 0;
-            this.guardarBtn.Text = "Guardar";
+            this.guardarBtn.Text = "Crear";
             this.guardarBtn.UseVisualStyleBackColor = true;
             this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
@@ -150,18 +151,19 @@
             this.actualizarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actualizarBtn.Location = new System.Drawing.Point(3, 57);
             this.actualizarBtn.Name = "actualizarBtn";
-            this.actualizarBtn.Size = new System.Drawing.Size(388, 48);
+            this.actualizarBtn.Size = new System.Drawing.Size(228, 48);
             this.actualizarBtn.TabIndex = 1;
-            this.actualizarBtn.Text = "Actualizar";
+            this.actualizarBtn.Text = "Editar";
             this.actualizarBtn.UseVisualStyleBackColor = true;
             this.actualizarBtn.Click += new System.EventHandler(this.actualizarBtn_Click);
             // 
             // otroBtn
             // 
             this.otroBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otroBtn.Enabled = false;
             this.otroBtn.Location = new System.Drawing.Point(3, 111);
             this.otroBtn.Name = "otroBtn";
-            this.otroBtn.Size = new System.Drawing.Size(388, 48);
+            this.otroBtn.Size = new System.Drawing.Size(228, 48);
             this.otroBtn.TabIndex = 2;
             this.otroBtn.Text = "Otro";
             this.otroBtn.UseVisualStyleBackColor = true;
@@ -170,9 +172,10 @@
             // borrarBtn
             // 
             this.borrarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borrarBtn.Enabled = false;
             this.borrarBtn.Location = new System.Drawing.Point(3, 165);
             this.borrarBtn.Name = "borrarBtn";
-            this.borrarBtn.Size = new System.Drawing.Size(388, 51);
+            this.borrarBtn.Size = new System.Drawing.Size(228, 51);
             this.borrarBtn.TabIndex = 3;
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.UseVisualStyleBackColor = true;
@@ -182,13 +185,14 @@
             // 
             this.marcasGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.marcasGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.marcasGrid.Location = new System.Drawing.Point(403, 228);
+            this.marcasGrid.Location = new System.Drawing.Point(243, 228);
             this.marcasGrid.Name = "marcasGrid";
             this.marcasGrid.RowTemplate.Height = 25;
             this.marcasGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.marcasGrid.Size = new System.Drawing.Size(394, 219);
+            this.marcasGrid.Size = new System.Drawing.Size(554, 219);
             this.marcasGrid.TabIndex = 3;
             this.marcasGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.marcasGrid_CellClick);
+            this.marcasGrid.SelectionChanged += new System.EventHandler(this.marcasGrid_SelectionChanged);
             // 
             // MarcasForm
             // 

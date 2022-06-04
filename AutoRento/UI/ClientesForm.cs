@@ -70,6 +70,11 @@ namespace AutoRento.UI
                     LoadData();
                 }
             }
+
+            catch(Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este cliente porque es referenciado por otras tablas");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
@@ -86,6 +91,12 @@ namespace AutoRento.UI
         {
             clienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
 
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            editarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
     }
 }

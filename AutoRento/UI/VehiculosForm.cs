@@ -78,5 +78,12 @@ namespace AutoRento.UI
 
             }
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            button4.Enabled = dataGridView1.SelectedRows.Count > 0;
+            editarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+
+        }
     }
 }

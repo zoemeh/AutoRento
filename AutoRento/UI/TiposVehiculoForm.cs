@@ -81,6 +81,7 @@ namespace AutoRento.UI
                 {
                     tiposVehiculoRepo.Delete(t);
                     LoadData();
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -125,6 +126,12 @@ namespace AutoRento.UI
             {
                 return true;
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+
         }
     }
 }

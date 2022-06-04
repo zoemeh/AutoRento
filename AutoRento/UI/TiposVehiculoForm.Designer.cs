@@ -90,6 +90,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(394, 219);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -117,7 +118,7 @@
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(388, 48);
             this.guardarBtn.TabIndex = 0;
-            this.guardarBtn.Text = "Guardar";
+            this.guardarBtn.Text = "Crear";
             this.guardarBtn.UseVisualStyleBackColor = true;
             this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
@@ -128,13 +129,14 @@
             this.actualizarBtn.Name = "actualizarBtn";
             this.actualizarBtn.Size = new System.Drawing.Size(388, 48);
             this.actualizarBtn.TabIndex = 1;
-            this.actualizarBtn.Text = "Actualizar";
+            this.actualizarBtn.Text = "Editar";
             this.actualizarBtn.UseVisualStyleBackColor = true;
             this.actualizarBtn.Click += new System.EventHandler(this.actualizarBtn_Click);
             // 
             // otroBtn
             // 
             this.otroBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otroBtn.Enabled = false;
             this.otroBtn.Location = new System.Drawing.Point(3, 111);
             this.otroBtn.Name = "otroBtn";
             this.otroBtn.Size = new System.Drawing.Size(388, 48);
@@ -146,6 +148,7 @@
             // borrarBtn
             // 
             this.borrarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borrarBtn.Enabled = false;
             this.borrarBtn.Location = new System.Drawing.Point(3, 165);
             this.borrarBtn.Name = "borrarBtn";
             this.borrarBtn.Size = new System.Drawing.Size(388, 51);

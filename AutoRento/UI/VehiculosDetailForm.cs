@@ -20,7 +20,7 @@ namespace AutoRento.UI
         internal ModeloRepo modeloRepo = new ModeloRepo();
         internal TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
         internal TipoVehiculoRepo tipoVehiculoRepo = new TipoVehiculoRepo();
-        internal List<string> errors = new List<string>();
+        internal List<string> errores = new List<string>();
         public bool Editando { get; set; }
 
         public VehiculosDetailForm()
@@ -70,15 +70,20 @@ namespace AutoRento.UI
         }
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            FillVehiculo();
-            if (Editando)
+            if (Validar())
             {
-                vehiculoRepo.Update(FillVehiculo());
-            } else
-            {
-                vehiculoRepo.Create(FillVehiculo());
+                FillVehiculo();
+                if (Editando)
+                {
+                    vehiculoRepo.Update(FillVehiculo());
+                }
+                else
+                {
+                    vehiculoRepo.Create(FillVehiculo());
+                }
+                Close();
             }
-            Close();
+
         }
 
         private void cancelarBtn_Click(object sender, EventArgs e)
@@ -111,6 +116,70 @@ namespace AutoRento.UI
                     modeloCombo.Enabled = true;
 
                 }
+            }
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text.Trim()))
+            {
+                errores.Add("Descripcion no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(motorText.Text.Trim()))
+            {
+                errores.Add("No. de motor no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(chasisText.Text.Trim()))
+            {
+                errores.Add("No. de chasis no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(placaText.Text.Trim()))
+            {
+                errores.Add("No. de placa no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(tipoVehiculoCombo.Text.Trim()))
+            {
+                errores.Add("Tipo de vehiculo no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(marcaCombo.Text.Trim()))
+            {
+                errores.Add("Marca no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(modeloCombo.Text.Trim()))
+            {
+                errores.Add("Modelo no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(tipoConbustibleCombo.Text.Trim()))
+            {
+                errores.Add("Tipo de combustible no puede estar en blanco");
+            }
+
+            using AutoRentoContext db = new AutoRentoContext();
+            if (db.Vehiculos.Where(x => x.Descripcion == descripcionText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un vehiculo con esa descripcion.");
+            }
+            if (db.Vehiculos.Where(x => x.NumeroChasis == chasisText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un vehiculo con ese numero de chasis.");
+            }
+            if(db.Vehiculos.Where(x => x.NumeroPlaca == placaText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un vehiculo con ese numero de placa.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
