@@ -1,4 +1,5 @@
 ﻿using AutoRento.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace AutoRento.Data
         public List<Inspeccion> View()
         {
             using AutoRentoContext db = new AutoRentoContext();
-            return db.Inspecciones.ToList();
+            return db.Inspecciones.Include(x => x.Vehiculo).Include(x => x.Cliente).Include(x => x.Empleado).ToList();
         }
     }
 }

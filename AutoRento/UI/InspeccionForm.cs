@@ -52,12 +52,12 @@ namespace AutoRento.UI
             inspeccion.ClienteId = cliente.Id;
             var empleado = (Empleado)empleadoCombo.SelectedItem;
             inspeccion.EmpleadoId = (int)empleado.Id;
-            
+
             return inspeccion;
         }
         private void Clear()
         {
-            
+
             ralladurasCheck.Checked = false;
             gatoCheck.Checked = false;
             cristalCheck.Checked = false;
@@ -76,7 +76,8 @@ namespace AutoRento.UI
             if (vehiculo != null)
             {
                 inspeccion.Vehiculo = vehiculo;
-            } else
+            }
+            else
             {
                 // TODO: ERROR
             }
@@ -108,16 +109,23 @@ namespace AutoRento.UI
 
         private void crearBtn_Click(object sender, EventArgs e)
         {
-            inspeccionRepo.Create(GetInspeccion());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                inspeccionRepo.Create(GetInspeccion());
+                LoadData();
+                Clear();
+            }
+
         }
 
         private void editarBtn_Click(object sender, EventArgs e)
         {
-            inspeccionRepo.Update(GetInspeccion());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                inspeccionRepo.Update(GetInspeccion());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
@@ -141,7 +149,11 @@ namespace AutoRento.UI
         {
             errores.Clear();
             using AutoRentoContext db = new AutoRentoContext();
-            if (fechaCheck.Value > DateTime.Today)
+            if (string.IsNullOrWhiteSpace(combustibleCombo.Text.Trim()))
+            {
+                errores.Add("Combustible no puede estar en blanco.");
+            }
+            if (fechaCheck.Value.Date > DateTime.Today.Date)
             {
                 errores.Add("Fecha no puede estar en el futuro");
             }
