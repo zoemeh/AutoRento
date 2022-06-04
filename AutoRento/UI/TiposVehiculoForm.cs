@@ -42,6 +42,7 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
+            tiposVehiculo.Id = null;
             if (Validar())
             {
                 tiposVehiculoRepo.Create(GetTipoVehiculo());
@@ -53,6 +54,10 @@ namespace AutoRento.UI
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
+            if (tiposVehiculo == null)
+            {
+                return;
+            }
             if (Validar())
             {
                 tiposVehiculoRepo.Update(GetTipoVehiculo());
@@ -102,7 +107,7 @@ namespace AutoRento.UI
                 errores.Add("Descripción no puede estar en blanco");
             }
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.TiposVehiculo.Where(x => x.Descripcion == descripcionText.Text.Trim()).Any())
+            if (db.TiposVehiculo.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.Id != tiposVehiculo.Id).Any())
             {
                 errores.Add("Ya existe un tipo de vehiculo con esa descripción");
             }

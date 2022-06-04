@@ -57,17 +57,18 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
+            modelo.Id = null;
             if (Validar())
             {
                 modeloRepo.Create(GetModelo());
                 LoadData();
                 Clear();
             }
-            
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
+
             if (Validar())
             {
                 modeloRepo.Update(GetModelo());
@@ -139,7 +140,7 @@ namespace AutoRento.UI
             }
             using AutoRentoContext db = new AutoRentoContext();
             var marca = (Marca)marcasCombo.SelectedItem;
-            if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id).Any())
+            if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id && x.Id != modelo.Id).Any())
             {
                 errores.Add("Ya existe un modelo con este nombre para esta marca.");
             }

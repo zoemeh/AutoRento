@@ -41,6 +41,7 @@ namespace AutoRento
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
+            tipoCombustible.Id = null;
             if (Validar())
             {
                 tipoCombustibleRepo.Create(GetTipoCombustible());
@@ -97,7 +98,7 @@ namespace AutoRento
                 errores.Add("Descripción no puede estar en blanco");
             }
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.TiposCombustible.Where(x => x.Descripcion == descripcionText.Text).Any())
+            if (db.TiposCombustible.Where(x => x.Descripcion == descripcionText.Text && x.Id != tipoCombustible.Id).Any())
             {
                 errores.Add("Ya existe un tipo de combustible con esa descripción");
             }
