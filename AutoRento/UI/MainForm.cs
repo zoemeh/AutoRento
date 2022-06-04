@@ -12,9 +12,16 @@ namespace AutoRento.UI
 {
     public partial class MainForm : Form
     {
-        public TiposCombustibleForm tiposCombustibleForm;
+        public ClientesForm clientesForm;
+        public EmpleadosForm empleadosForm;
         public MarcasForm marcasForm;
         public ModelosForm modelosForm;
+        public RentaForm rentaForm;
+        public ReportesForm reportesForm;
+        public TiposCombustibleForm tiposCombustibleForm;
+        public TiposVehiculoForm tiposVehiculoForm;
+        public VehiculosForm vehiculosForm;
+
         public MainForm()
         {
             InitializeComponent();
@@ -66,6 +73,75 @@ namespace AutoRento.UI
                 modelosForm.Show();
                 modelosForm.Focus();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tiposVehiculoForm == null || tiposVehiculoForm.IsDisposed)
+            {
+                tiposVehiculoForm = new TiposVehiculoForm();
+                tiposVehiculoForm.LoadData();
+                tiposVehiculoForm.Show();
+            }
+            else
+            {
+                tiposVehiculoForm.LoadData();
+                tiposVehiculoForm.Show();
+                tiposVehiculoForm.Focus();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (vehiculosForm == null || vehiculosForm.IsDisposed)
+            {
+                vehiculosForm = new VehiculosForm();
+                vehiculosForm.LoadData();
+                vehiculosForm.Show();
+            }
+            else
+            {
+                vehiculosForm.LoadData();
+                vehiculosForm.Show();
+                vehiculosForm.Focus();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (clientesForm == null || clientesForm.IsDisposed)
+            {
+                clientesForm = new ClientesForm();
+                clientesForm.LoadData();
+                clientesForm.Show();
+            }
+            else
+            {
+                clientesForm.LoadData();
+                clientesForm.Show();
+                clientesForm.Focus();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (empleadosForm == null || empleadosForm.IsDisposed)
+            {
+                empleadosForm = new EmpleadosForm();
+                empleadosForm.LoadData();
+                empleadosForm.Show();
+            }
+            else
+            {
+                empleadosForm.LoadData();
+                empleadosForm.Show();
+                empleadosForm.Focus();
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

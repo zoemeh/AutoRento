@@ -59,3 +59,6 @@ C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.MainForm.resour
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.InspeccionForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.RentaForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ReportesForm.resources
+C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.VehiculosDetailForm.resources
+C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ClientesDetailForm.resources
+C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.EmpleadosDetailForm.resources

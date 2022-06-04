@@ -185,6 +185,7 @@
             this.marcasGrid.Location = new System.Drawing.Point(403, 228);
             this.marcasGrid.Name = "marcasGrid";
             this.marcasGrid.RowTemplate.Height = 25;
+            this.marcasGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.marcasGrid.Size = new System.Drawing.Size(394, 219);
             this.marcasGrid.TabIndex = 3;
             this.marcasGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.marcasGrid_CellClick);

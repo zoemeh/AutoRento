@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace AutoRento.UI
 {
-    public partial class EmpleadosForm : Form
+    public partial class ClientesDetailForm : Form
     {
-        public EmpleadosForm()
+        public ClientesDetailForm()
         {
             InitializeComponent();
-        }
-
-        public void LoadData()
-        {
-
         }
     }
 }

@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace AutoRento.Data
 {
-    internal class ModeloRepo : IRecordRepo<Modelo>
+    internal class VehiculoRepo : IRecordRepo<Vehiculo>
     {
-        public Modelo Create(Modelo t)
+        public Vehiculo Create(Vehiculo t)
         {
             t.Id = null;
-            t.Marca = null;
-            using AutoRentoContext empContext = new AutoRentoContext();
-            var data = empContext.Add(t);
-            empContext.SaveChanges();
+            using AutoRentoContext db = new AutoRentoContext();
+            var data = db.Add(t);
+            db.SaveChanges();
             return data.Entity;
         }
 
-        public void Delete(Modelo t)
+        public void Delete(Vehiculo t)
         {
             using AutoRentoContext db = new AutoRentoContext();
             db.Remove(t);
             db.SaveChanges();
         }
-        public Modelo Update(Modelo t)
+        public Vehiculo Update(Vehiculo t)
         {
             using AutoRentoContext db = new AutoRentoContext();
             var data = db.Update(t);
@@ -34,15 +33,10 @@ namespace AutoRento.Data
             return data.Entity;
         }
 
-        public List<Modelo> View()
+        public List<Vehiculo> View()
         {
             using AutoRentoContext db = new AutoRentoContext();
-            return db.Modelos.Include(m => m.Marca).ToList();
-        }
-        public List<Modelo> View(Marca marca)
-        {
-            using AutoRentoContext db = new AutoRentoContext();
-            return db.Modelos.Where(x => x.MarcaId == marca.Id).Include(m => m.Marca).ToList();
+            return db.Vehiculos.Include(x => x.Modelo).Include(x => x.Marca).Include(x => x.TipoVehiculo).Include(x => x.TipoCombustible).ToList();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AutoRento.Models
 {
-    internal class Modelo
+    public class Modelo
     {
         public int? Id { get; set; }
         [Required]

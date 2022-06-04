@@ -75,6 +75,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Vehiculos";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -100,6 +101,7 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Clientes";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -110,6 +112,7 @@
             this.button4.TabIndex = 1;
             this.button4.Text = "Empleados";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -138,6 +141,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Tipos de Vehiculos";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button5
             // 
@@ -198,6 +202,7 @@
             this.button8.TabIndex = 0;
             this.button8.Text = "Renta y Devolucion";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 

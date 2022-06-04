@@ -16,5 +16,10 @@ namespace AutoRento.UI
         {
             InitializeComponent();
         }
+
+        public void LoadData()
+        {
+
+        }
     }
 }

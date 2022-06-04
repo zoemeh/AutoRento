@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoRento.Data;
+using AutoRento.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,76 @@ namespace AutoRento.UI
 {
     public partial class TiposVehiculoForm : Form
     {
+        readonly TipoVehiculo tiposVehiculo = new TipoVehiculo();
+        readonly TipoVehiculoRepo tiposVehiculoRepo = new TipoVehiculoRepo();
         public TiposVehiculoForm()
         {
             InitializeComponent();
+        }
+
+        public void LoadData()
+        {
+            dataGridView1.DataSource = tiposVehiculoRepo.View();
+            dataGridView1.ClearSelection();
+        }
+        private TipoVehiculo GetTipoVehiculo()
+        {
+            tiposVehiculo.Descripcion = descripcionText.Text.Trim();
+            tiposVehiculo.Estado = estadoCheck.Checked;
+            return tiposVehiculo;
+        }
+
+        private void Clear()
+        {
+            descripcionText.Text = "";
+            estadoCheck.Checked = false;
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            tiposVehiculoRepo.Create(GetTipoVehiculo());
+            LoadData();
+            Clear();
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            tiposVehiculoRepo.Update(GetTipoVehiculo());
+            LoadData();
+            Clear();
+        }
+
+        private void otroBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var t = GetTipoVehiculo();
+                if (t != null)
+                {
+                    tiposVehiculoRepo.Delete(t);
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tiposVehiculo.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            tiposVehiculo.Descripcion = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            tiposVehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+            descripcionText.Text = tiposVehiculo.Descripcion;
+            estadoCheck.Checked = tiposVehiculo.Estado;
         }
     }
 }

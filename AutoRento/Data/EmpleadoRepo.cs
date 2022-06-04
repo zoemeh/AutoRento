@@ -1,0 +1,41 @@
+﻿using AutoRento.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutoRento.Data
+{
+    internal class EmpleadoRepo : IRecordRepo<Empleado>
+    {
+        public Empleado Create(Empleado t)
+        {
+            t.Id = null;
+            using AutoRentoContext db = new AutoRentoContext();
+            var data = db.Add(t);
+            db.SaveChanges();
+            return data.Entity;
+        }
+
+        public void Delete(Empleado t)
+        {
+            using AutoRentoContext db = new AutoRentoContext();
+            db.Remove(t);
+            db.SaveChanges();
+        }
+        public Empleado Update(Empleado t)
+        {
+            using AutoRentoContext db = new AutoRentoContext();
+            var data = db.Update(t);
+            db.SaveChanges();
+            return data.Entity;
+        }
+
+        public List<Empleado> View()
+        {
+            using AutoRentoContext db = new AutoRentoContext();
+            return db.Empleados.ToList();
+        }
+    }
+}
