@@ -58,7 +58,14 @@ C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.VehiculosForm.r
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.MainForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.InspeccionForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.RentaForm.resources
-C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ReportesForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.VehiculosDetailForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ClientesDetailForm.resources
 C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.EmpleadosDetailForm.resources
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\NPOI.OOXML.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\NPOI.OpenXml4Net.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\NPOI.OpenXmlFormats.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\NPOI.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\ICSharpCode.SharpZipLib.dll
+C:\dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ReportesForm.resources

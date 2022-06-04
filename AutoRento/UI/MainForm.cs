@@ -36,11 +36,12 @@ namespace AutoRento.UI
 
         private void combustibleBtn_Click(object sender, EventArgs e)
         {
-            if ( tiposCombustibleForm == null || tiposCombustibleForm.IsDisposed)
+            if (tiposCombustibleForm == null || tiposCombustibleForm.IsDisposed)
             {
                 tiposCombustibleForm = new TiposCombustibleForm();
                 tiposCombustibleForm.Show();
-            } else
+            }
+            else
             {
                 tiposCombustibleForm.Show();
                 tiposCombustibleForm.Focus();
@@ -53,7 +54,8 @@ namespace AutoRento.UI
             {
                 marcasForm = new MarcasForm();
                 marcasForm.Show();
-            } else
+            }
+            else
             {
                 marcasForm.Show();
                 marcasForm.Focus();
@@ -169,6 +171,20 @@ namespace AutoRento.UI
                 inspeccionForm.LoadData();
                 inspeccionForm.Show();
                 inspeccionForm.Focus();
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (reportesForm == null || reportesForm.IsDisposed)
+            {
+                reportesForm = new ReportesForm();
+                reportesForm.Show();
+            }
+            else
+            {
+                reportesForm.Show();
+                reportesForm.Focus();
             }
         }
     }

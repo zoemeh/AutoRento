@@ -60,19 +60,21 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1143, 750);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(403, 3);
+            this.button2.Location = new System.Drawing.Point(575, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(394, 219);
+            this.button2.Size = new System.Drawing.Size(564, 365);
             this.button2.TabIndex = 1;
             this.button2.Text = "Vehiculos";
             this.button2.UseVisualStyleBackColor = true;
@@ -86,19 +88,21 @@
             this.tableLayoutPanel2.Controls.Add(this.button3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button4, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 228);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 380);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(563, 365);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(3, 3);
+            this.button3.Location = new System.Drawing.Point(4, 5);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(191, 213);
+            this.button3.Size = new System.Drawing.Size(273, 355);
             this.button3.TabIndex = 0;
             this.button3.Text = "Clientes";
             this.button3.UseVisualStyleBackColor = true;
@@ -107,9 +111,10 @@
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(200, 3);
+            this.button4.Location = new System.Drawing.Point(285, 5);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(191, 213);
+            this.button4.Size = new System.Drawing.Size(274, 355);
             this.button4.TabIndex = 1;
             this.button4.Text = "Empleados";
             this.button4.UseVisualStyleBackColor = true;
@@ -125,20 +130,22 @@
             this.tableLayoutPanel3.Controls.Add(this.combustibleBtn, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.button7, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 5);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(563, 365);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(4, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(191, 103);
+            this.button1.Size = new System.Drawing.Size(273, 172);
             this.button1.TabIndex = 0;
             this.button1.Text = "Tipos de Vehiculos";
             this.button1.UseVisualStyleBackColor = true;
@@ -147,9 +154,10 @@
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(200, 3);
+            this.button5.Location = new System.Drawing.Point(285, 5);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(191, 103);
+            this.button5.Size = new System.Drawing.Size(274, 172);
             this.button5.TabIndex = 1;
             this.button5.Text = "Marcas";
             this.button5.UseVisualStyleBackColor = true;
@@ -158,9 +166,10 @@
             // combustibleBtn
             // 
             this.combustibleBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combustibleBtn.Location = new System.Drawing.Point(200, 112);
+            this.combustibleBtn.Location = new System.Drawing.Point(285, 187);
+            this.combustibleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.combustibleBtn.Name = "combustibleBtn";
-            this.combustibleBtn.Size = new System.Drawing.Size(191, 104);
+            this.combustibleBtn.Size = new System.Drawing.Size(274, 173);
             this.combustibleBtn.TabIndex = 2;
             this.combustibleBtn.Text = "Tipos de Combustible";
             this.combustibleBtn.UseVisualStyleBackColor = true;
@@ -169,9 +178,10 @@
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(3, 112);
+            this.button7.Location = new System.Drawing.Point(4, 187);
+            this.button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(191, 104);
+            this.button7.Size = new System.Drawing.Size(273, 173);
             this.button7.TabIndex = 3;
             this.button7.Text = "Modelos";
             this.button7.UseVisualStyleBackColor = true;
@@ -187,20 +197,22 @@
             this.tableLayoutPanel4.Controls.Add(this.button10, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.button6, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(403, 228);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(575, 380);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(394, 219);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(564, 365);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // button8
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Location = new System.Drawing.Point(3, 3);
+            this.button8.Location = new System.Drawing.Point(4, 5);
+            this.button8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(191, 103);
+            this.button8.Size = new System.Drawing.Size(274, 172);
             this.button8.TabIndex = 0;
             this.button8.Text = "Renta y Devolucion";
             this.button8.UseVisualStyleBackColor = true;
@@ -209,19 +221,22 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(200, 3);
+            this.button9.Location = new System.Drawing.Point(286, 5);
+            this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(191, 103);
+            this.button9.Size = new System.Drawing.Size(274, 172);
             this.button9.TabIndex = 1;
             this.button9.Text = "Reportes";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.Location = new System.Drawing.Point(200, 112);
+            this.button10.Location = new System.Drawing.Point(286, 187);
+            this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(191, 104);
+            this.button10.Size = new System.Drawing.Size(274, 173);
             this.button10.TabIndex = 2;
             this.button10.Text = "Buscar";
             this.button10.UseVisualStyleBackColor = true;
@@ -229,9 +244,10 @@
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(3, 112);
+            this.button6.Location = new System.Drawing.Point(4, 187);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(191, 104);
+            this.button6.Size = new System.Drawing.Size(274, 173);
             this.button6.TabIndex = 3;
             this.button6.Text = "Inspecciones";
             this.button6.UseVisualStyleBackColor = true;
@@ -239,10 +255,11 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1143, 750);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
