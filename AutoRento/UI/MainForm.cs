@@ -22,6 +22,7 @@ namespace AutoRento.UI
         public TiposVehiculoForm tiposVehiculoForm;
         public VehiculosForm vehiculosForm;
         public InspeccionForm inspeccionForm;
+        private ConsultaForm consultasForm;
 
         public MainForm()
         {
@@ -198,6 +199,18 @@ namespace AutoRento.UI
         private void button10_Click(object sender, EventArgs e)
         {
 
+            if (consultasForm == null || consultasForm.IsDisposed)
+            {
+                consultasForm = new ConsultaForm();
+                consultasForm.Show();
+                consultasForm.LoadData();
+            }
+            else
+            {
+                consultasForm.Show();
+                consultasForm.LoadData();
+                consultasForm.Focus();
+            }
         }
     }
 }
