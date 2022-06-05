@@ -84,6 +84,10 @@ namespace AutoRento.UI
                     Clear();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este vehiculo porque es referenciado por otras tablas");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
@@ -131,7 +135,7 @@ namespace AutoRento.UI
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
-
+            actualizarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
     }
 }

@@ -72,6 +72,10 @@ namespace AutoRento.UI
                     LoadData();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este empleado porque es referenciado por otras tablas");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);

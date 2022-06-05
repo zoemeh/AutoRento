@@ -139,6 +139,10 @@ namespace AutoRento.UI
                     LoadData();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar esta inspeccion porque es referenciada por otras tablas");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
@@ -171,6 +175,12 @@ namespace AutoRento.UI
             {
                 return true;
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            editarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
     }
 }

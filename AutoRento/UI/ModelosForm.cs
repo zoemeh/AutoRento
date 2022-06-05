@@ -95,6 +95,10 @@ namespace AutoRento.UI
                     Clear();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este modelo porque es referenciado por otras tablas");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);

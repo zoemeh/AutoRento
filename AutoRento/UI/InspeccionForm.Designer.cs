@@ -98,6 +98,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(554, 219);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -132,6 +133,7 @@
             // editarBtn
             // 
             this.editarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editarBtn.Enabled = false;
             this.editarBtn.Location = new System.Drawing.Point(3, 57);
             this.editarBtn.Name = "editarBtn";
             this.editarBtn.Size = new System.Drawing.Size(228, 48);
@@ -153,6 +155,7 @@
             // borrarBtn
             // 
             this.borrarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.borrarBtn.Enabled = false;
             this.borrarBtn.Location = new System.Drawing.Point(3, 165);
             this.borrarBtn.Name = "borrarBtn";
             this.borrarBtn.Size = new System.Drawing.Size(228, 51);

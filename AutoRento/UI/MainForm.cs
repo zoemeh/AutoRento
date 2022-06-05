@@ -40,10 +40,12 @@ namespace AutoRento.UI
             {
                 tiposCombustibleForm = new TiposCombustibleForm();
                 tiposCombustibleForm.Show();
+                tiposCombustibleForm.LoadData();
             }
             else
             {
                 tiposCombustibleForm.Show();
+                tiposCombustibleForm.LoadData();
                 tiposCombustibleForm.Focus();
             }
         }
@@ -54,10 +56,12 @@ namespace AutoRento.UI
             {
                 marcasForm = new MarcasForm();
                 marcasForm.Show();
+                marcasForm.LoadData();
             }
             else
             {
                 marcasForm.Show();
+                marcasForm.LoadData();
                 marcasForm.Focus();
             }
         }
@@ -67,13 +71,13 @@ namespace AutoRento.UI
             if (modelosForm == null || modelosForm.IsDisposed)
             {
                 modelosForm = new ModelosForm();
-                modelosForm.LoadData();
                 modelosForm.Show();
+                modelosForm.LoadData();
             }
             else
             {
-                modelosForm.LoadData();
                 modelosForm.Show();
+                modelosForm.LoadData();
                 modelosForm.Focus();
             }
         }
@@ -83,13 +87,14 @@ namespace AutoRento.UI
             if (tiposVehiculoForm == null || tiposVehiculoForm.IsDisposed)
             {
                 tiposVehiculoForm = new TiposVehiculoForm();
-                tiposVehiculoForm.LoadData();
                 tiposVehiculoForm.Show();
+                tiposVehiculoForm.LoadData();
+
             }
             else
             {
-                tiposVehiculoForm.LoadData();
                 tiposVehiculoForm.Show();
+                tiposVehiculoForm.LoadData();
                 tiposVehiculoForm.Focus();
             }
         }
@@ -99,13 +104,13 @@ namespace AutoRento.UI
             if (vehiculosForm == null || vehiculosForm.IsDisposed)
             {
                 vehiculosForm = new VehiculosForm();
-                vehiculosForm.LoadData();
                 vehiculosForm.Show();
+                vehiculosForm.LoadData();
             }
             else
             {
-                vehiculosForm.LoadData();
                 vehiculosForm.Show();
+                vehiculosForm.LoadData();
                 vehiculosForm.Focus();
             }
         }
@@ -115,13 +120,13 @@ namespace AutoRento.UI
             if (clientesForm == null || clientesForm.IsDisposed)
             {
                 clientesForm = new ClientesForm();
-                clientesForm.LoadData();
                 clientesForm.Show();
+                clientesForm.LoadData();
             }
             else
             {
-                clientesForm.LoadData();
                 clientesForm.Show();
+                clientesForm.LoadData();
                 clientesForm.Focus();
             }
         }
@@ -131,13 +136,13 @@ namespace AutoRento.UI
             if (empleadosForm == null || empleadosForm.IsDisposed)
             {
                 empleadosForm = new EmpleadosForm();
-                empleadosForm.LoadData();
                 empleadosForm.Show();
+                empleadosForm.LoadData();
             }
             else
             {
-                empleadosForm.LoadData();
                 empleadosForm.Show();
+                empleadosForm.LoadData();
                 empleadosForm.Focus();
             }
         }
@@ -147,13 +152,13 @@ namespace AutoRento.UI
             if (rentaForm == null || rentaForm.IsDisposed)
             {
                 rentaForm = new RentaForm();
-                rentaForm.LoadData();
                 rentaForm.Show();
+                rentaForm.LoadData();
             }
             else
             {
-                rentaForm.LoadData();
                 rentaForm.Show();
+                rentaForm.LoadData();
                 rentaForm.Focus();
             }
         }
@@ -163,13 +168,13 @@ namespace AutoRento.UI
             if (inspeccionForm == null || inspeccionForm.IsDisposed)
             {
                 inspeccionForm = new InspeccionForm();
-                inspeccionForm.LoadData();
                 inspeccionForm.Show();
+                inspeccionForm.LoadData();
             }
             else
             {
-                inspeccionForm.LoadData();
                 inspeccionForm.Show();
+                inspeccionForm.LoadData();
                 inspeccionForm.Focus();
             }
         }
@@ -180,10 +185,12 @@ namespace AutoRento.UI
             {
                 reportesForm = new ReportesForm();
                 reportesForm.Show();
+                reportesForm.LoadData();
             }
             else
             {
                 reportesForm.Show();
+                reportesForm.LoadData();
                 reportesForm.Focus();
             }
         }

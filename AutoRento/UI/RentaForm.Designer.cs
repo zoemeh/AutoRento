@@ -88,8 +88,11 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(652, 267);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -119,26 +122,31 @@
             this.guardarBtn.TabIndex = 0;
             this.guardarBtn.Text = "Crear";
             this.guardarBtn.UseVisualStyleBackColor = true;
+            this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
             // editarBtn
             // 
             this.editarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editarBtn.Enabled = false;
             this.editarBtn.Location = new System.Drawing.Point(3, 69);
             this.editarBtn.Name = "editarBtn";
             this.editarBtn.Size = new System.Drawing.Size(270, 60);
             this.editarBtn.TabIndex = 1;
             this.editarBtn.Text = "Editar";
             this.editarBtn.UseVisualStyleBackColor = true;
+            this.editarBtn.Click += new System.EventHandler(this.editarBtn_Click);
             // 
             // otroBtn
             // 
             this.otroBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.otroBtn.Enabled = false;
             this.otroBtn.Location = new System.Drawing.Point(3, 135);
             this.otroBtn.Name = "otroBtn";
             this.otroBtn.Size = new System.Drawing.Size(270, 60);
             this.otroBtn.TabIndex = 2;
-            this.otroBtn.Text = "Otro";
+            this.otroBtn.Text = "Devolver";
             this.otroBtn.UseVisualStyleBackColor = true;
+            this.otroBtn.Click += new System.EventHandler(this.otroBtn_Click);
             // 
             // borrarBtn
             // 
@@ -149,6 +157,7 @@
             this.borrarBtn.TabIndex = 3;
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.UseVisualStyleBackColor = true;
+            this.borrarBtn.Click += new System.EventHandler(this.borrarBtn_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -297,6 +306,11 @@
             // montoText
             // 
             this.montoText.Location = new System.Drawing.Point(3, 62);
+            this.montoText.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.montoText.Name = "montoText";
             this.montoText.Size = new System.Drawing.Size(242, 23);
             this.montoText.TabIndex = 12;

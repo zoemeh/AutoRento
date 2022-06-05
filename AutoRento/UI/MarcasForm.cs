@@ -21,7 +21,7 @@ namespace AutoRento.UI
         {
             InitializeComponent();
         }
-        private void LoadData()
+        public void LoadData()
         {
             marcasGrid.DataSource = marcaRepo.View();
             marcasGrid.ClearSelection();
@@ -84,6 +84,10 @@ namespace AutoRento.UI
                     LoadData();
                     Clear();
                 }
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar esta marca porque es referenciado por otras tablas");
             }
             catch (Exception ex)
             {

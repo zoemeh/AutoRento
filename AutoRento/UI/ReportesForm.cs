@@ -1,15 +1,21 @@
-﻿using Newtonsoft.Json;
+﻿using AutoRento.Data;
+using AutoRento.Models;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace AutoRento.UI
 {
@@ -24,20 +30,21 @@ namespace AutoRento.UI
         {
             WriteExcel();
         }
-        static void WriteExcel()
+        public void LoadData()
         {
-            List<UserDetails> persons = new List<UserDetails>()
+            clientesCombo.DataSource = (new ClienteRepo()).View();
+        }
+        private void WriteExcel()
+        {
+            using AutoRentoContext db = new AutoRentoContext();
+            var query = db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente)
+                .Where(x => x.FechaRenta >= desdeDate.Value && x.FechaRenta <= hastaDate.Value);
+            if (!todosCheck.Checked)
             {
-                new UserDetails() {ID="1001", Name="ABCD", City ="City1", Country="USA"},
-                new UserDetails() {ID="1002", Name="PQRS", City ="City2", Country="INDIA"},
-                new UserDetails() {ID="1003", Name="XYZZ", City ="City3", Country="CHINA"},
-                new UserDetails() {ID="1004", Name="LMNO", City ="City4", Country="UK"},
-           };
-
-            // Lets converts our object data to Datatable for a simplified logic.
-            // Datatable is most easy way to deal with complex datatypes for easy reading and formatting.
-
-            DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(persons), (typeof(DataTable)));
+                query = query.Where(x => x.ClienteId == ((Cliente)clientesCombo.SelectedItem).Id);
+            }
+            var rentas = query.ToList();
+            DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(rentas), (typeof(DataTable)));
             var memoryStream = new MemoryStream();
 
             using (var fs = new FileStream("Result.xlsx", FileMode.Create, FileAccess.Write))
@@ -70,6 +77,20 @@ namespace AutoRento.UI
                     rowIndex++;
                 }
                 workbook.Write(fs);
+                FileInfo fi = new FileInfo("Result.xlsx");
+                if (fi.Exists)
+                {
+                    using Process fileopener = new Process();
+
+                    fileopener.StartInfo.FileName = @"C:\Program Files (x86)\Microsoft Office\root\Office16\excel.exe";
+                    fileopener.StartInfo.Arguments = "\"" + "Result.xlsx" + "\"";
+                    fileopener.Start();
+
+                }
+                else
+                {
+                    //file doesn't exist
+                }
             }
 
         }

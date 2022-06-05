@@ -17,10 +17,11 @@ namespace AutoRento
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadData();
+            CombustiblesGrid.ClearSelection();
         }
 
 
-        private void LoadData()
+        public void LoadData()
         {
             CombustiblesGrid.DataSource = tipoCombustibleRepo.View();
             CombustiblesGrid.ClearSelection();
@@ -79,6 +80,10 @@ namespace AutoRento
                     LoadData();
                     Clear();
                 }
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este combustible porque es referenciado por otras tablas");
             }
             catch (Exception ex)
             {

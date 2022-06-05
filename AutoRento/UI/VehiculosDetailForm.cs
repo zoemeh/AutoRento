@@ -34,6 +34,24 @@ namespace AutoRento.UI
             tipoConbustibleCombo.DataSource = tipoCombustibleRepo.View();
             tipoVehiculoCombo.DataSource = tipoVehiculoRepo.View();
             modeloCombo.Enabled = false;
+            using AutoRentoContext db = new AutoRentoContext();
+            var marca = marcaRepo.View().First();
+            if (marca != null)
+            {
+                var modelos = modeloRepo.View(marca);
+                modeloCombo.DataSource = modelos;
+
+                if (modelos.Count == 0)
+                {
+                    modeloCombo.Enabled = false;
+                    MessageBox.Show("Esta marca no tiene modelos");
+                }
+                else
+                {
+                    modeloCombo.Enabled = true;
+
+                }
+            }
         }
 
         public Vehiculo FillVehiculo()
@@ -155,15 +173,15 @@ namespace AutoRento.UI
             }
 
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.Vehiculos.Where(x => x.Descripcion == descripcionText.Text.Trim()).Any())
+            if (db.Vehiculos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.Id != vehiculo.Id).Any())
             {
                 errores.Add("Ya existe un vehiculo con esa descripcion.");
             }
-            if (db.Vehiculos.Where(x => x.NumeroChasis == chasisText.Text.Trim()).Any())
+            if (db.Vehiculos.Where(x => x.NumeroChasis == chasisText.Text.Trim() && x.Id != vehiculo.Id).Any())
             {
                 errores.Add("Ya existe un vehiculo con ese numero de chasis.");
             }
-            if(db.Vehiculos.Where(x => x.NumeroPlaca == placaText.Text.Trim()).Any())
+            if(db.Vehiculos.Where(x => x.NumeroPlaca == placaText.Text.Trim() && x.Id != vehiculo.Id).Any())
             {
                 errores.Add("Ya existe un vehiculo con ese numero de placa.");
             }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutoRento.Migrations
 {
     [DbContext(typeof(AutoRentoContext))]
-    [Migration("20220604144222_Initial")]
+    [Migration("20220604231957_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,9 @@ namespace AutoRento.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Devuelto")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("EmpleadoId")
                         .HasColumnType("int");
 
@@ -230,11 +233,16 @@ namespace AutoRento.Migrations
                     b.Property<double>("MontoDia")
                         .HasColumnType("float");
 
+                    b.Property<int?>("VehiculoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("EmpleadoId");
+
+                    b.HasIndex("VehiculoId");
 
                     b.ToTable("Rentas");
                 });
@@ -396,9 +404,15 @@ namespace AutoRento.Migrations
                         .WithMany()
                         .HasForeignKey("EmpleadoId");
 
+                    b.HasOne("AutoRento.Models.Vehiculo", "Vehiculo")
+                        .WithMany()
+                        .HasForeignKey("VehiculoId");
+
                     b.Navigation("Cliente");
 
                     b.Navigation("Empleado");
+
+                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("AutoRento.Models.Vehiculo", b =>
