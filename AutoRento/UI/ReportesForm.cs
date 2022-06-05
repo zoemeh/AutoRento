@@ -33,15 +33,38 @@ namespace AutoRento.UI
         public void LoadData()
         {
             clientesCombo.DataSource = (new ClienteRepo()).View();
+            tipoVehiculoCombo.DataSource = (new TipoVehiculoRepo()).View();
+            marcaCombo.DataSource = (new MarcaRepo()).View();
+            modeloCombo.Enabled = false;
+            clientesCombo.Enabled = false;
+            tipoVehiculoCombo.Enabled = false;
+            marcaCombo.Enabled = false;
+            clienteCheck.Checked = false;
+            tipoVehiculoCheck.Checked = false;
+            marcaCheck.Checked = false;
+            modeloCheck.Checked = false;
         }
         private void WriteExcel()
         {
             using AutoRentoContext db = new AutoRentoContext();
             var query = db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente)
                 .Where(x => x.FechaRenta >= desdeDate.Value && x.FechaRenta <= hastaDate.Value);
-            if (!todosCheck.Checked)
+            if (clienteCheck.Checked)
             {
                 query = query.Where(x => x.ClienteId == ((Cliente)clientesCombo.SelectedItem).Id);
+            }
+            if (tipoVehiculoCheck.Checked)
+            {
+                query = query.Where(x => x.Vehiculo.TipoVehiculoId == ((TipoVehiculo)tipoVehiculoCombo.SelectedItem).Id);
+            }
+            if (marcaCheck.Checked)
+            {
+                query = query.Where(x => x.Vehiculo.MarcaId == ((Marca)marcaCombo.SelectedItem).Id);
+            }
+            if (modeloCheck.Checked)
+            {
+                query = query.Where(x => x.Vehiculo.ModeloId == ((Modelo)modeloCombo.SelectedItem).Id);
+
             }
             var rentas = query.ToList();
             DataTable table = (DataTable)JsonConvert.DeserializeObject(JsonConvert.SerializeObject(rentas), (typeof(DataTable)));
@@ -93,6 +116,41 @@ namespace AutoRento.UI
                 }
             }
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void marcaCombo_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var m = (Marca)marcaCombo.SelectedItem;
+            modeloCombo.DataSource = (new ModeloRepo()).View(m);
+            if (modeloCheck.Checked)
+            {
+                modeloCombo.Enabled = true;
+            }
+        }
+
+        private void clienteCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            clientesCombo.Enabled = clienteCheck.Checked;
+        }
+
+        private void tipoVehiculoCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            tipoVehiculoCombo.Enabled = tipoVehiculoCheck.Checked;
+        }
+
+        private void marcaCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            marcaCombo.Enabled = marcaCheck.Checked;
+        }
+
+        private void modeloCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            modeloCombo.Enabled = modeloCheck.Checked;
         }
     }
 }

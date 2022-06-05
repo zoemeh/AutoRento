@@ -194,5 +194,10 @@ namespace AutoRento.UI
                 reportesForm.Focus();
             }
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

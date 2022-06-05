@@ -69,3 +69,4 @@ C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\NPOI.dll
 C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
 C:\dev\AutoRento\AutoRento\bin\Debug\net6.0-windows\ICSharpCode.SharpZipLib.dll
 C:\dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ReportesForm.resources
+C:\Dev\AutoRento\AutoRento\obj\Debug\net6.0-windows\AutoRento.UI.ConsultaForm.resources
