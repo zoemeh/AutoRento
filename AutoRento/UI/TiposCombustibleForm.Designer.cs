@@ -52,6 +52,7 @@
             this.CombustiblesGrid.AllowUserToAddRows = false;
             this.CombustiblesGrid.AllowUserToDeleteRows = false;
             this.CombustiblesGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.CombustiblesGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.CombustiblesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CombustiblesGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CombustiblesGrid.Location = new System.Drawing.Point(286, 300);

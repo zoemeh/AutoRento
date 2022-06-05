@@ -183,6 +183,8 @@
             // 
             // marcasGrid
             // 
+            this.marcasGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.marcasGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.marcasGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.marcasGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.marcasGrid.Location = new System.Drawing.Point(243, 228);
