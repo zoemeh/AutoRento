@@ -114,6 +114,7 @@
             this.clienteCheck.TabIndex = 7;
             this.clienteCheck.Text = "Activo";
             this.clienteCheck.UseVisualStyleBackColor = true;
+            this.clienteCheck.CheckedChanged += new System.EventHandler(this.clienteCheck_CheckedChanged);
             // 
             // clientesCombo
             // 
@@ -122,6 +123,7 @@
             this.clientesCombo.Name = "clientesCombo";
             this.clientesCombo.Size = new System.Drawing.Size(121, 23);
             this.clientesCombo.TabIndex = 0;
+            this.clientesCombo.SelectedIndexChanged += new System.EventHandler(this.clientesCombo_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -141,6 +143,7 @@
             this.tipoVehiculoCheck.TabIndex = 14;
             this.tipoVehiculoCheck.Text = "Activo";
             this.tipoVehiculoCheck.UseVisualStyleBackColor = true;
+            this.tipoVehiculoCheck.CheckedChanged += new System.EventHandler(this.tipoVehiculoCheck_CheckedChanged);
             // 
             // tipoVehiculoCombo
             // 
@@ -168,6 +171,7 @@
             this.marcaCheck.TabIndex = 15;
             this.marcaCheck.Text = "Activo";
             this.marcaCheck.UseVisualStyleBackColor = true;
+            this.marcaCheck.CheckedChanged += new System.EventHandler(this.marcaCheck_CheckedChanged);
             // 
             // marcaCombo
             // 
@@ -176,6 +180,7 @@
             this.marcaCombo.Name = "marcaCombo";
             this.marcaCombo.Size = new System.Drawing.Size(121, 23);
             this.marcaCombo.TabIndex = 12;
+            this.marcaCombo.SelectedIndexChanged += new System.EventHandler(this.marcaCombo_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -195,6 +200,7 @@
             this.modeloCheck.TabIndex = 16;
             this.modeloCheck.Text = "Activo";
             this.modeloCheck.UseVisualStyleBackColor = true;
+            this.modeloCheck.CheckedChanged += new System.EventHandler(this.modeloCheck_CheckedChanged);
             // 
             // modeloCombo
             // 

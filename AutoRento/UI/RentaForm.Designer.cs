@@ -208,6 +208,7 @@
             this.empleadoCombo.Name = "empleadoCombo";
             this.empleadoCombo.Size = new System.Drawing.Size(265, 23);
             this.empleadoCombo.TabIndex = 6;
+            this.empleadoCombo.SelectedIndexChanged += new System.EventHandler(this.empleadoCombo_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -226,6 +227,7 @@
             this.clienteCombo.Name = "clienteCombo";
             this.clienteCombo.Size = new System.Drawing.Size(265, 23);
             this.clienteCombo.TabIndex = 7;
+            this.clienteCombo.SelectedIndexChanged += new System.EventHandler(this.clienteCombo_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -244,6 +246,7 @@
             this.vehiculoCombo.Name = "vehiculoCombo";
             this.vehiculoCombo.Size = new System.Drawing.Size(265, 23);
             this.vehiculoCombo.TabIndex = 8;
+            this.vehiculoCombo.SelectedIndexChanged += new System.EventHandler(this.vehiculoCombo_SelectedIndexChanged);
             // 
             // label4
             // 

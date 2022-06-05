@@ -39,7 +39,7 @@ namespace AutoRento.UI
         {
             using AutoRentoContext db = new AutoRentoContext();
             var query = db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente)
-                .Where(x => x.FechaRenta >= desdeDate.Value && x.FechaRenta <= hastaDate.Value);
+                .Where(x => x.FechaRenta >= desdeDate.Value.Date && x.FechaRenta <= hastaDate.Value.Date);
             if (clienteCheck.Checked)
             {
                 query = query.Where(x => x.ClienteId == ((Cliente)clientesCombo.SelectedItem).Id);
@@ -59,6 +59,41 @@ namespace AutoRento.UI
             }
             var rentas = query.ToList();
             dataGridView1.DataSource = rentas;
+        }
+
+        private void clientesCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clienteCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            clientesCombo.Enabled = clienteCheck.Checked;
+        }
+
+        private void tipoVehiculoCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            tipoVehiculoCombo.Enabled = tipoVehiculoCheck.Checked;
+        }
+
+        private void marcaCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            marcaCombo.Enabled = marcaCheck.Checked;
+        }
+
+        private void modeloCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            modeloCombo.Enabled = modeloCheck.Checked;
+        }
+
+        private void marcaCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var m = (Marca)marcaCombo.SelectedItem;
+            modeloCombo.DataSource = (new ModeloRepo()).View(m);
+            if (modeloCheck.Checked)
+            {
+                modeloCombo.Enabled = true;
+            }
         }
     }
 }

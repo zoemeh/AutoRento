@@ -55,6 +55,7 @@ namespace AutoRento.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
+            renta.Devuelto = false;
             if (Validar())
             {
                 rentaRepo.Create(GetRenta());
@@ -94,32 +95,39 @@ namespace AutoRento.UI
         {
             editarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            otroBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            renta.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            renta.EmpleadoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
-            renta.ClienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
-            renta.VehiculoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
-            renta.FechaRenta = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[7].Value.ToString());
-            renta.FechaDevolucion = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[8].Value.ToString());
-            renta.MontoDia = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[9].Value.ToString());
-            renta.Comentario = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
-            renta.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[11].Value.ToString());
-            renta.Devuelto = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[12].Value.ToString());
-            using AutoRentoContext db = new AutoRentoContext();
-            empleadoCombo.SelectedItem = db.Empleados.Where(x => x.Id == renta.EmpleadoId).FirstOrDefault();
-            clienteCombo.SelectedItem = db.Clientes.Where(x => x.Id == renta.ClienteId).FirstOrDefault();
-            vehiculoCombo.SelectedItem = db.Vehiculos.Where(x => x.Id == renta.VehiculoId).FirstOrDefault();
-            rentaDate.Value = renta.FechaRenta;
-            devolucionDate.Value = renta.FechaDevolucion;
-            montoText.Value = Convert.ToDecimal(renta.MontoDia);
-            comentarioText.Text = renta.Comentario;
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                renta.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                renta.EmpleadoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                renta.ClienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                renta.VehiculoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
+                renta.FechaRenta = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[7].Value.ToString());
+                renta.FechaDevolucion = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[8].Value.ToString());
+                renta.MontoDia = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[9].Value.ToString());
+                renta.Comentario = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
+                renta.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[11].Value.ToString());
+                renta.Devuelto = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[12].Value.ToString());
+                using AutoRentoContext db = new AutoRentoContext();
+                empleadoCombo.SelectedItem = db.Empleados.Where(x => x.Id == renta.EmpleadoId).FirstOrDefault();
+                clienteCombo.SelectedItem = db.Clientes.Where(x => x.Id == renta.ClienteId).FirstOrDefault();
+                vehiculoCombo.SelectedItem = db.Vehiculos.Where(x => x.Id == renta.VehiculoId).FirstOrDefault();
+                rentaDate.Value = renta.FechaRenta;
+                devolucionDate.Value = renta.FechaDevolucion;
+                montoText.Value = Convert.ToDecimal(renta.MontoDia);
+                comentarioText.Text = renta.Comentario;
+            }
+
+
         }
         public bool Validar()
         {
             errores.Clear();
+            GetRenta();
             if (rentaDate.Value > devolucionDate.Value)
             {
                 errores.Add("La fecha de renta debe ser menor a la fecha de devolucion.");
@@ -133,11 +141,11 @@ namespace AutoRento.UI
                 errores.Add("No se pueden modificar vehiculos ya devueltos.");
             }
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.Rentas.Where(x => x.VehiculoId == GetRenta().VehiculoId && x.Devuelto == false && x.Id != renta.Id).Any())
+            if (db.Rentas.Where(x => x.VehiculoId == renta.VehiculoId && x.Devuelto == false).Any())
             {
                 errores.Add("Este vehiculo ya esta rentado.");
             }
-            if (db.Inspecciones.Where(x => x.Fecha.Date < renta.FechaRenta && x.VehiculoId == renta.VehiculoId).Any())
+            if (!db.Inspecciones.Where(x => x.Fecha.Date == renta.FechaRenta.Date && x.VehiculoId == renta.VehiculoId).Any())
             {
                 errores.Add("Vehiculo debe ser inspeccionado hoy antes de rentar.");
             }
@@ -167,6 +175,23 @@ namespace AutoRento.UI
                 rentaRepo.Update(r);
                 LoadData();
             }
+        }
+
+        private void vehiculoCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //renta.ClienteId = ((Cliente)clienteCombo.SelectedItem).Id;
+        }
+
+        private void empleadoCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ///renta.EmpleadoId = ((Empleado)empleadoCombo.SelectedItem).Id;
+
+        }
+
+        private void clienteCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //renta.VehiculoId = ((Vehiculo)vehiculoCombo.SelectedItem).Id;
+
         }
     }
 }

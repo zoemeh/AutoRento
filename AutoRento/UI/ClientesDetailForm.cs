@@ -111,11 +111,11 @@ namespace AutoRento.UI
                 }
             }
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
+            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim() && x.Id != cliente.Id).Any())
             {
                 errores.Add("Ya existe un cliente con este nombre");
             }
-            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Replace("-","").Trim()).Any())
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Replace("-","").Trim() && x.Id != cliente.Id).Any())
             {
                 errores.Add("Ya existe un cliente con esta cedula.");
             }

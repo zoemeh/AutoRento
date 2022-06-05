@@ -85,11 +85,11 @@ namespace AutoRento.UI
             }
             // TODO: validar cedula
             using AutoRentoContext db = new AutoRentoContext();
-            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
+            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim() && x.Id != empleado.Id).Any())
             {
                 errores.Add("Ya existe un empleado con este nombre");
             }
-            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Trim()).Any())
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Trim() && x.Id != empleado.Id).Any())
             {
                 errores.Add("Ya existe un empleado con esta cedula.");
             }
