@@ -33,10 +33,19 @@ namespace AutoRento.Data
             return data.Entity;
         }
 
-        public List<Renta> View()
+        public List<Renta> View(bool all = true)
         {
             using AutoRentoContext db = new AutoRentoContext();
-            return db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente).ToList();
+            if (all)
+            {
+                return db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente).ToList();
+
+            }
+            else
+            {
+                return db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente).Where(x => x.Estado == true).ToList();
+
+            }
         }
     }
 }

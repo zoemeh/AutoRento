@@ -27,9 +27,9 @@ namespace AutoRento.UI
 
         public void LoadData()
         {
-            clienteCombo.DataSource = clienteRepo.View();
-            vehiculoCombo.DataSource = vehiculoRepo.View();
-            empleadoCombo.DataSource = empleadoRepo.View();
+            clienteCombo.DataSource = clienteRepo.View(false);
+            vehiculoCombo.DataSource = vehiculoRepo.View(false);
+            empleadoCombo.DataSource = empleadoRepo.View(false);
             dataGridView1.DataSource = rentaRepo.View();
             dataGridView1.ClearSelection();
         }

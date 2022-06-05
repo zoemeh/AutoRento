@@ -25,7 +25,7 @@ namespace AutoRento.UI
         public void LoadData()
         {
             dataGridView1.DataSource = modeloRepo.View();
-            marcasCombo.DataSource = marcaRepo.View();
+            marcasCombo.DataSource = marcaRepo.View(false);
             dataGridView1.ClearSelection();
         }
 
@@ -75,7 +75,7 @@ namespace AutoRento.UI
                 LoadData();
                 Clear();
             }
-            
+
         }
 
         private void otroBtn_Click(object sender, EventArgs e)
@@ -144,11 +144,20 @@ namespace AutoRento.UI
                 errores.Add("Debe ser parte de una Marca.");
             }
             using AutoRentoContext db = new AutoRentoContext();
-            var marca = (Marca)marcasCombo.SelectedItem;
-            if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id && x.Id != modelo.Id).Any())
+            if (string.IsNullOrWhiteSpace(marcasCombo.Text))
             {
-                errores.Add("Ya existe un modelo con este nombre para esta marca.");
+                errores.Add("Debe tener una marca.");
+
             }
+            else
+            {
+                var marca = (Marca)marcasCombo.SelectedItem;
+                if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id && x.Id != modelo.Id).Any())
+                {
+                    errores.Add("Ya existe un modelo con este nombre para esta marca.");
+                }
+            }
+
             if (errores.Count > 0)
             {
                 var message = "";

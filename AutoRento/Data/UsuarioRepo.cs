@@ -32,7 +32,7 @@ namespace AutoRento.Data
             return data.Entity;
         }
 
-        public List<Usuario> View()
+        public List<Usuario> View(bool all=true)
         {
             using AutoRentoContext db = new AutoRentoContext();
             return db.Usuarios.ToList();

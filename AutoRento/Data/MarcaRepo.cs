@@ -32,10 +32,19 @@ namespace AutoRento.Data
             return data.Entity;
         }
 
-        public List<Marca> View()
+        public List<Marca> View(bool all = true)
         {
             using AutoRentoContext db = new AutoRentoContext();
-            return db.Marcas.ToList();
+            if (all)
+            {
+                return db.Marcas.ToList();
+
+            }
+            else
+            {
+                return db.Marcas.Where(x => x.Estado == true).ToList();
+
+            }
         }
     }
 }

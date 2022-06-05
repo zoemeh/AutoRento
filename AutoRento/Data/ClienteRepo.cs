@@ -32,10 +32,17 @@ namespace AutoRento.Data
             return data.Entity;
         }
 
-        public List<Cliente> View()
+        public List<Cliente> View(bool all = true)
         {
             using AutoRentoContext db = new AutoRentoContext();
-            return db.Clientes.ToList();
+            if (all)
+            {
+                return db.Clientes.ToList();
+            }
+            else
+            {
+                return db.Clientes.Where(x => x.Estado == true).ToList();
+            }
         }
     }
 }

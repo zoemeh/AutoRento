@@ -30,9 +30,9 @@ namespace AutoRento.UI
 
         public void LoadData()
         {
-            marcaCombo.DataSource = marcaRepo.View();
-            tipoConbustibleCombo.DataSource = tipoCombustibleRepo.View();
-            tipoVehiculoCombo.DataSource = tipoVehiculoRepo.View();
+            marcaCombo.DataSource = marcaRepo.View(false);
+            tipoConbustibleCombo.DataSource = tipoCombustibleRepo.View(false);
+            tipoVehiculoCombo.DataSource = tipoVehiculoRepo.View(false);
             modeloCombo.Enabled = false;
             using AutoRentoContext db = new AutoRentoContext();
             var marca = marcaRepo.View().First();
@@ -121,7 +121,7 @@ namespace AutoRento.UI
             var marca = db.Marcas.Where(x => x.Descripcion == marcaCombo.Text).FirstOrDefault();
             if (marca != null)
             {
-                var modelos = modeloRepo.View(marca);
+                var modelos = modeloRepo.View(marca, false);
                 modeloCombo.DataSource = modelos;
 
                 if (modelos.Count == 0)
